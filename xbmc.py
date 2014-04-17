@@ -27,15 +27,15 @@ def handle(text, mic, profile):
     if bool(re.search(r'\b{0}\b'.format("PAUSE"), text, re.IGNORECASE)) or bool(re.search(r'\b{0}\b'.format("PLAY"), text, re.IGNORECASE)):
         mic.say("PLAY PAUSE")
         data = {'jsonrpc':'2.0','method':'Player.PlayPause','params':{'playerid':1},'id':1}
-        xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/json?request="
+        xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/jsonrpc?request="
         data_json = json.dumps(data)
-        r = requests.post(xbmcUrlTest, data_json)
+        r = requests.post(xbmcUrl, data_json)
     elif bool(re.search(r'\b{0}\b'.format("STOP"), text, re.IGNORECASE)):
         mic.say("STOP")
         data = {'jsonrpc':'2.0','method':'Player.Stop','params':{'playerid':1},'id':1}
         data_json = json.dumps(data)
-        xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/json?request="
-        r = requests.post(xbmcUrlTest, data_json)
+        xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/jsonrpc?request="
+        r = requests.post(xbmcUrl, data_json)
     else:
         mic.say("Sorry, I don't know how to do that yet")
 
