@@ -2,13 +2,12 @@ import re
 import json
 import requests
 
-xbmcName = ""
 xbmcIp = ""
 xbmcPort = ""
 xbmcUsername = ""
 xbmcPassword = ""
 
-WORDS = [xbmcName, "PLAY", "PAUSE", "STOP"]
+WORDS = ["MOVIE","FILM","SHOW", "PLAY", "PAUSE", "STOP"]
 
 def doJson(data):
 	xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/jsonrpc?request="
@@ -36,7 +35,7 @@ def handle(text, mic, profile):
         data = {'jsonrpc':'2.0','method':'Player.Stop','params':{'playerid':1},'id':1}
         doJson(data)
     else:
-        mic.say("Sorry, I don't know how to do that yet")
+        mic.say("Sorry I'm not aware of that XBMC function yet")
 
 def isValid(text):
     """
@@ -46,4 +45,4 @@ def isValid(text):
         	text -- user-input, typically transcribed speech
     """
     
-    return bool(re.search(r'\b{0}\b'.format(xbmcName), text, re.IGNORECASE))
+    return bool(re.search(r'\b(movie|film|show)\b', text, re.IGNORECASE))
