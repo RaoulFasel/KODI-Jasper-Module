@@ -1,4 +1,4 @@
-XBMC-Jasper-Module
+KODI-Jasper-Module
 ==================
 
-XBMC control module for the Jasper project
+KODI control module for the Jasper project
