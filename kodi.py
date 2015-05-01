@@ -7,7 +7,7 @@ kodi_port = ""
 kodi_username = ""
 kodi_password = ""
 
-WORDS = ["MEDIA","BACK", "PLAY", "PAUSE", "STOP"]
+WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "info", "UP", "DOWN"]
 
 def doJson(data):
 	xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
@@ -37,6 +37,18 @@ def handle(text, mic, profile):
         doJson(data)
     elif bool(re.search(r'\b{0}\b'.format("BACK"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Back','id':1}
+        doJson(data)
+    elif bool(re.search(r'\b{0}\b'.format("SELECT"), text, re.IGNORECASE)):
+        data = {'jsonrpc':'2.0','method':'Input.Select','id':1}
+        doJson(data)
+    elif bool(re.search(r'\b{0}\b'.format("Down"), text, re.IGNORECASE)):
+        data = {'jsonrpc':'2.0','method':'Input.Down','id':1}
+        doJson(data)
+    elif bool(re.search(r'\b{0}\b'.format("UP"), text, re.IGNORECASE)):
+        data = {'jsonrpc':'2.0','method':'Input.Up','id':1}
+        doJson(data)
+    elif bool(re.search(r'\b{0}\b'.format("UP"), text, re.IGNORECASE)):
+        data = {'jsonrpc':'2.0','method':'Input.Info','id':1}
         doJson(data)
     else:
 
