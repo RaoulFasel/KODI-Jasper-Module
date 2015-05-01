@@ -47,7 +47,7 @@ def handle(text, mic, profile):
     elif bool(re.search(r'\b{0}\b'.format("UP"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Up','id':1}
         doJson(data)
-    elif bool(re.search(r'\b{0}\b'.format("UP"), text, re.IGNORECASE)):
+    elif bool(re.search(r'\b{0}\b'.format("INFO"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Info','id':1}
         doJson(data)
     else:
