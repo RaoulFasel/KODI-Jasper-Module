@@ -7,7 +7,7 @@ kodi_port = ""
 kodi_username = ""
 kodi_password = ""
 
-WORDS = ["MOVIE","FILM","SHOW", "PLAY", "PAUSE", "STOP"]
+WORDS = ["MEDIA","BACK", "PLAY", "PAUSE", "STOP"]
 
 def doJson(data):
 	xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
@@ -21,6 +21,7 @@ def handle(text, mic, profile):
         Current supports:
             -Pause / Play
             -Stop
+            -Back
 
         Arguments:
         	text -- user-input, typically transcribed speech
@@ -34,8 +35,12 @@ def handle(text, mic, profile):
     elif bool(re.search(r'\b{0}\b'.format("STOP"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Player.Stop','params':{'playerid':1},'id':1}
         doJson(data)
+    elif bool(re.search(r'\b{0}\b'.format("BACK"), text, re.IGNORECASE)):
+        data = {'jsonrpc':'2.0','method':'Input.Back','id':1}
+        doJson(data)
     else:
-        mic.say("Sorry I'm not aware of that XBMC function yet")
+
+        mic.say("Sorry I'm not aware of that KODI function yet")
 
 def isValid(text):
     """
@@ -45,4 +50,4 @@ def isValid(text):
         	text -- user-input, typically transcribed speech
     """
     
-    return bool(re.search(r'\b(movie|film|show)\b', text, re.IGNORECASE))
+    return bool(re.search(r'\b(media)\b', text, re.IGNORECASE))
