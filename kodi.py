@@ -2,15 +2,15 @@ import re
 import json
 import requests
 
-xbmcIp = ""
-xbmcPort = ""
-xbmcUsername = ""
-xbmcPassword = ""
+kodi_ip = ""
+kodi_port = ""
+kodi_username = ""
+kodi_password = ""
 
 WORDS = ["MOVIE","FILM","SHOW", "PLAY", "PAUSE", "STOP"]
 
 def doJson(data):
-	xbmcUrl = "http://"+xbmcUsername+":"+xbmcPassword+"@"+xbmcIp+":"+xbmcPort+"/jsonrpc?request="
+	xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
 	data_json = json.dumps(data)
 	r = requests.post(xbmcUrl, data_json)
 
