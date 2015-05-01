@@ -7,7 +7,7 @@ kodi_port = ""
 kodi_username = ""
 kodi_password = ""
 
-WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "info", "UP", "DOWN"]
+WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN"]
 
 def doJson(data):
 	xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
