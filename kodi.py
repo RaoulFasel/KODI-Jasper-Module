@@ -22,13 +22,15 @@ def handle(text, mic, profile):
             -Pause / Play
             -Stop
             -Back
+            -Up/Down/Left/Right
+            -Info
+            -Select
 
         Arguments:
         	text -- user-input, typically transcribed speech
        		mic -- used to interact with the user (for both input and output)
         	profile -- contains information related to the user (e.g., phone number)
     """
-
     if bool(re.search(r'\b{0}\b'.format("PAUSE"), text, re.IGNORECASE)) or bool(re.search(r'\b{0}\b'.format("PLAY"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Player.PlayPause','params':{'playerid':1},'id':1}
         doJson(data)
