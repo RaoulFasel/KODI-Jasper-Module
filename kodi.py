@@ -11,11 +11,11 @@ def doJson(data):
 	r = requests.post(xbmcUrl, data_json)
 
 def handle(text, mic, profile):
-    kodi_ip = profile[kodi][IP]
-    kodi_port = profile[kodi][PORT]
-    kodi_username = profile[kodi][USER]
-    kodi_password = profile[kodi][PASS]
-    kodi_mac = profile[kodi][MAC]
+    kodi_ip = profile['kodi']['IP']
+    kodi_port = profile['kodi']['PORT']
+    kodi_username = profile['kodi']['USER']
+    kodi_password = profile['kodi']['PASS']
+    kodi_mac = profile['kodi']['MAC']
 
     """
         Responds to user-input to control XBMC.
