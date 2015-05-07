@@ -3,7 +3,7 @@ import json
 import requests
 from wakeonlan import wol
 
-WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN", "AWAKE"]
+WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN", "START"]
 
 
 def doJson(data, profile):
@@ -57,7 +57,7 @@ def handle(text, mic, profile):
     elif bool(re.search(r'\b{0}\b'.format("INFO"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Info','id':1}
         doJson(data, profile)
-    elif bool(re.search(r'\b{0}\b'.format("AWAKE"), text, re.IGNORECASE)):
+    elif bool(re.search(r'\b{0}\b'.format("START"), text, re.IGNORECASE)):
         try:
             wol.send_magic_packet(profile['kodi']['MAC'])
         except KeyError:
