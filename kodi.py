@@ -42,25 +42,25 @@ def handle(text, mic, profile):
     """
     if bool(re.search(r'\b{0}\b'.format("PAUSE"), text, re.IGNORECASE)) or bool(re.search(r'\b{0}\b'.format("PLAY"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Player.PlayPause','params':{'playerid':1},'id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("STOP"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Player.Stop','params':{'playerid':1},'id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("BACK"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Back','id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("SELECT"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Select','id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("Down"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Down','id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("UP"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Up','id':1}
-        doJson(data)
+        doJson(data, profile)
     elif bool(re.search(r'\b{0}\b'.format("INFO"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Info','id':1}
-        doJson(data)
+        doJson(data, profile)
     else:
 
         mic.say("Sorry I'm not aware of that KODI function yet")
