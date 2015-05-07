@@ -1,9 +1,9 @@
 import re
 import json
 import requests
+from wakeonlan import wol
 
-
-WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN"]
+WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN", "AWAKE"]
 
 
 def doJson(data, profile):
@@ -12,11 +12,7 @@ def doJson(data, profile):
     kodi_port = profile['kodi']['PORT']
     kodi_username = profile['kodi']['USER']
     kodi_password = profile['kodi']['PASS']
-    try:
-        kodi_mac = profile['kodi']['MAC']
-    except KeyError:
-        kodi_mac = 0
-        print("Kodi mac adress was not defined")
+
     xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
     data_json = json.dumps(data)
     r = requests.post(xbmcUrl, data_json)
@@ -61,6 +57,14 @@ def handle(text, mic, profile):
     elif bool(re.search(r'\b{0}\b'.format("INFO"), text, re.IGNORECASE)):
         data = {'jsonrpc':'2.0','method':'Input.Info','id':1}
         doJson(data, profile)
+    elif bool(re.search(r'\b{0}\b'.format("AWAKE"), text, re.IGNORECASE)):
+        try:
+            wol.send_magic_packet(profile['kodi']['MAC'])
+        except KeyError:
+            print("Kodi mac adress was not defined")
+
+        mic.say("The media center will be usable shortly")
+
     else:
 
         mic.say("Sorry I'm not aware of that KODI function yet")
