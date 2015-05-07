@@ -5,12 +5,8 @@ import requests
 
 WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN"]
 
-def doJson(data):
-	xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
-	data_json = json.dumps(data)
-	r = requests.post(xbmcUrl, data_json)
 
-def handle(text, mic, profile):
+def doJson(data, profile):
 
     kodi_ip = profile['kodi']['IP']
     kodi_port = profile['kodi']['PORT']
@@ -20,8 +16,16 @@ def handle(text, mic, profile):
         kodi_mac = profile['kodi']['MAC']
     except KeyError:
         kodi_mac = 0
+        print("Kodi mac adress was not defined")
+    xbmcUrl = "http://"+kodi_username+":"+kodi_password+"@"+kodi_ip+":"+kodi_port+"/jsonrpc?request="
+    data_json = json.dumps(data)
+    r = requests.post(xbmcUrl, data_json)
+
+
+def handle(text, mic, profile):
+
     """
-        Responds to user-input to control XBMC.
+        Responds to user-input to control KODI.
         
         Current supports:
             -Pause / Play
