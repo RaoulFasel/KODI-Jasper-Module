@@ -2,10 +2,11 @@ import re
 import json
 import requests
 
-kodi_ip = ""
-kodi_port = ""
-kodi_username = ""
-kodi_password = ""
+kodi_ip = profile[kodi][IP]
+kodi_port = profile[kodi][PORT]
+kodi_username = profile[kodi][USER]
+kodi_password = profile[kodi][PASS]
+kodi_mac = profile[kodi][MAC]
 
 WORDS = ["MEDIA", "BACK", "PLAY", "PAUSE", "STOP", "SELECT", "INFO", "UP", "DOWN"]
 
